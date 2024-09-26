@@ -44,10 +44,12 @@ function makeOperatorsMap(operators) {
     }, {});
 }
 const operatorsMap = makeOperatorsMap([
+    new Operator('(', -1, 0, () => 0),
+    new Operator(')', -1, 0, () => 0),
     new Operator('+', 1, 2, (a, b) => a | b),
     new Operator('.', 2, 2, (a, b) => a & b),
     new Operator('^', 3, 2, (a, b) => a ^ b),
-    new Operator("'", 4, 1, (a) => a ? 0 : 1),
+    new Operator("'", 4, 1, (a) => a ? 1 : 0),
 ]);
 function cleanUpExpression(exp) {
     return exp.trim().replace(/[\u0020\n]+/g, '');
@@ -55,27 +57,43 @@ function cleanUpExpression(exp) {
 function inversePolishNotation(input, operators) {
     const output = [];
     const operatorsStack = new Stack();
-    console.log(">> Input: " + input);
+    console.debug(">> Input: ", input);
     if (!input) {
-        return [];
+        return { expression: [] };
     }
     for (let i = 0; i < input.length; i++) {
         const token = input.charAt(i);
         const newOperator = operators[token];
         const isOperator = !!newOperator;
-        console.log(">> Token: " + token);
-        console.log(">> Stack: " + operatorsStack.toString());
-        console.log(">> Out: " + JSON.stringify(output));
-        console.log();
+        console.debug(">> Token: ", token);
+        console.debug(">> Stack: ", operatorsStack);
+        console.debug(">> Out: ", output);
+        console.debug();
         // Qualquer não operador será considerado uma entrada ou valor fixo.
         if (!isOperator) {
             output.push(token);
             continue;
         }
+        if (newOperator.token === ')') {
+            // Busca o abre parenteses.
+            while (!operatorsStack.empty() &&
+                operatorsStack.top().token !== '(') {
+                output.push(operatorsStack.pop());
+            }
+            // Se o operatorsStack está vazio, é porque o ( não foi encontrado.
+            if (operatorsStack.empty()) {
+                return { error: 'Fecha-parenteses sem um abre-parenteses correspondente.' };
+            }
+            // Descarta o abre-parenteses.
+            operatorsStack.pop();
+            continue;
+        }
         while (!operatorsStack.empty()) {
             const topOperator = operatorsStack.top();
-            // Achou o lugar certo do operador
-            if (topOperator.precedence < newOperator.precedence) {
+            // Se for o parenteses, ou o novo operador tem a precedencia menor
+            // então ele deveria entrar no topo da pilha mesmo.
+            if (newOperator.token === '(' ||
+                topOperator.precedence < newOperator.precedence) {
                 break;
             }
             // Move o operador que estava no topo para o output
@@ -85,9 +103,12 @@ function inversePolishNotation(input, operators) {
         operatorsStack.push(newOperator);
     }
     while (!operatorsStack.empty()) {
+        if (operatorsStack.top().token === '(') {
+            return { error: 'Encontrado abre-parentesis sem um fecha-parentesis correspondente.' };
+        }
         output.push(operatorsStack.pop());
     }
-    return output;
+    return { expression: output };
 }
 function solver(input, context) {
     const solutionStack = new Stack();
@@ -132,7 +153,14 @@ function solver(input, context) {
 const context = new Map([
     ['A', 0],
     ['B', 1],
-    ['C', 0]
+    ['C', 1],
+    ['D', 0]
 ]);
-console.log(solver(inversePolishNotation(cleanUpExpression("'A +"), // Espera 
-operatorsMap), context));
+const { expression, error } = inversePolishNotation(cleanUpExpression("'A"), // Espera 
+operatorsMap);
+if (error) {
+    console.error(error);
+}
+else {
+    console.log(solver(expression, context));
+}
