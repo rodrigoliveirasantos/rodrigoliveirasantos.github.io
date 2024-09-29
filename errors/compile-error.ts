@@ -1,1 +1,5 @@
-export class CompileError extends Error {}
+export class CompileError {
+    constructor (
+        public reason: string
+    ) {}
+}

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "module": "AMD",
-        "target": "ES2020",
+        "module": "CommonJS",
+        "target": "ES6",
         "rootDir": "./",
-        "outFile": "./main.js"
+        "outDir": "out"
     },
     "include": [
         "**/*.ts"
