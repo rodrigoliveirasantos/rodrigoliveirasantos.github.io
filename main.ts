@@ -1,23 +1,24 @@
-import { Compiler } from "./compiler";
+import { Compiler, CompilationResult } from "./compiler";
 import { CompileError } from "./errors/compile-error";
 import { Solver } from "./solver";
 
 
 const compiler = new Compiler();
-const parsed = compiler.parse('(((())))');
 
-if (parsed instanceof CompileError) {
-    console.error('>> Error: ', parsed.reason);
-} 
+console.time('Compiler');
+const parsed = compiler.parse('(A + B) . C . ~F . ((A == B) + (A ^ C))');
+console.timeEnd('Compiler');
+
 
 const solver = new Solver(parsed.tokens);
 
 solver.setContext(new Map([
-    ['ABC', 0],
+    ['A', 0],
     ['B', 0],
     ['C', 0],
-    ['X', 0],
-    ['Z1', 0]
+    ['F', 0],
 ]))
 
-console.log(solver.solve());
+console.time('Solver');
+solver.solve();
+console.timeEnd('Solver');

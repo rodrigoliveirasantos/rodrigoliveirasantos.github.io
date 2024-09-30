@@ -16,7 +16,15 @@ function makeOperatorsMap(operators: Operator[]): OperatorsMap {
 /**
  * Operadores válidos. Eles são ordenados pelo tamanho do token
  * decrescente.
+ * 
+ * @todo Remover o ( e ) da lista de operadores.
  */
+/* 
+* Por mais que não seja realmente operadores, o abre-parentesis e
+* o fecha-parentesis foram adicionados nesta lista para que fosse
+* mais fácil de identificar. Coma a implementação do Token não é
+* mais necessário.
+*/
 export const OPERATORS = [
     new Operator('(', -1, 0, () => 0),
     new Operator(')', -1, 0, () => 0),
