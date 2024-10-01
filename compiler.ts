@@ -87,7 +87,7 @@ export class Compiler {
         console.debug(">> Compiler in: ", input, '\n');
 
         const tokens = tokeziner.parse();
-        const variables: string[] = [];
+        const variables = new Set<string>();
         
         for (let i = 0; i < tokens.length; i++) {
             const token = tokens[i];
@@ -100,7 +100,7 @@ export class Compiler {
 
             if (token.type === 'bit' || token.type === 'var') {
                 if (token.type === 'var') {
-                    variables.push(token.value as string);
+                    variables.add(token.value as string);
                 }
 
                 output.push(token);
@@ -170,7 +170,7 @@ export class Compiler {
          * vez. Por isto, uma única saída é declarada com um nome
          * fixo.
          */
-        const result = new CompilationResult(output, variables, [ 'S' ]);
+        const result = new CompilationResult(output, Array.from(variables.values()), [ 'S' ]);
 
         console.debug('>> Compiler out: ', result);
         console.debug();
