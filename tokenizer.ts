@@ -180,7 +180,7 @@ export class Tokenizer {
                     pode ser que seja falso. */
                     if (this.operatorsChars.includes(this.char)) {
                         /* No caso de termos um operador maior, vamos acumulando. */
-                        if (OPERATORS_MAP.has(this.tokenValue + this.char)) {
+                        if (this.nextChar && OPERATORS_MAP.has(this.tokenValue + this.char)) {
                             this.tokenValue += this.char;
                             ++this.cursor;
                         } else {

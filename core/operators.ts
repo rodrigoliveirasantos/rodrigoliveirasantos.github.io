@@ -13,6 +13,14 @@ function makeOperatorsMap(operators: Operator[]): OperatorsMap {
     return new Map(operators.map((operator) => [operator.token, operator]))
 }
 
+export const PARENTESIS_OPEN = new Operator('(', -1, 0, () => 0);
+export const PARENTESIS_CLOSE = new Operator(')', -1, 0, () => 0);
+export const OR = new Operator('+',  1, 2, (a, b) => a | b);
+export const AND = new Operator('.',  3, 2, (a, b) => a & b);
+export const XOR = new Operator('^',  4, 2, (a, b) => a ^ b);
+export const XNOR = new Operator('==', 4, 2, (a, b) => (a ^ b) ? 0 : 1);
+export const NOT = new Operator("~",  5, 1, (a)    => a ? 0 : 1);
+
 /**
  * Operadores válidos. Eles são ordenados pelo tamanho do token
  * decrescente.
@@ -26,13 +34,13 @@ function makeOperatorsMap(operators: Operator[]): OperatorsMap {
 * mais necessário.
 */
 export const OPERATORS = [
-    new Operator('(', -1, 0, () => 0),
-    new Operator(')', -1, 0, () => 0),
-    new Operator('+',  1, 2, (a, b) => a | b),
-    new Operator('.',  3, 2, (a, b) => a & b),
-    new Operator('^',  4, 2, (a, b) => a ^ b),
-    new Operator('==', 4, 2, (a, b) => (a ^ b) ? 0 : 1),
-    new Operator("~",  5, 1, (a)    => a ? 0 : 1),
+    PARENTESIS_CLOSE,
+    PARENTESIS_OPEN,
+    OR,
+    AND,
+    XOR,
+    XNOR,
+    NOT,
 ].sort((a, b) => {
     return b.token.length - a.token.length;
 });

@@ -1,24 +1,12 @@
-import { Compiler, CompilationResult } from "./compiler";
-import { CompileError } from "./errors/compile-error";
-import { Solver } from "./solver";
+
+import { sumOfProducts, truthTable } from "./lib";
 
 
-const compiler = new Compiler();
+const table = truthTable("~(A + B) . (~C ^ D + E) == C . D").table;
 
-console.time('Compiler');
-const parsed = compiler.parse('(A + B) . C . ~F . ((A == B) + (A ^ C))');
-console.timeEnd('Compiler');
+const { expression, error } = sumOfProducts(
+    table, 
+    { includeOutput: true }
+);
 
-
-const solver = new Solver(parsed.tokens);
-
-solver.setContext(new Map([
-    ['A', 0],
-    ['B', 0],
-    ['C', 0],
-    ['F', 0],
-]))
-
-console.time('Solver');
-solver.solve();
-console.timeEnd('Solver');
+console.log(expression, error)
