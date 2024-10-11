@@ -1,7 +1,7 @@
 {
   "name": "@dch/source",
   "workspaces": [
-    "packages/*"
+    "libs/*"
   ],
   "devDependencies": {
     "@angular-devkit/build-angular": "~18.2.0",

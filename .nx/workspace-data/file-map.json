@@ -30,14 +30,6 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".gitignore",
-        "hash": "8219409418780716570"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "5407418692668764289"
-      },
-      {
         "file": ".prettierrc",
         "hash": "16267754514737964994"
       },
@@ -46,16 +38,8 @@
         "hash": "17554676857246940898"
       },
       {
-        "file": "eslint.config.js",
-        "hash": "2478217381773231556"
-      },
-      {
         "file": "jest.config.ts",
         "hash": "3494843969422251966"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
       },
       {
         "file": "nx.json",
@@ -66,12 +50,28 @@
         "hash": "12552729428194614025"
       },
       {
-        "file": "package.json",
-        "hash": "13871700472367064237"
-      },
-      {
         "file": "tsconfig.base.json",
         "hash": "16936441711144470533"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "5407418692668764289"
+      },
+      {
+        "file": "eslint.config.js",
+        "hash": "2478217381773231556"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "package.json",
+        "hash": "6270611807952472056"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "8219409418780716570"
       }
     ],
     "projectFileMap": {

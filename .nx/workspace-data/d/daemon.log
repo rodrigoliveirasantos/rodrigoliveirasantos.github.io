@@ -618,3 +618,30 @@ Node.js v18.20.4
 [NX Daemon Server] - 2024-10-11T02:41:26.589Z - [SYNC]: collect registered sync generators
 [NX Daemon Server] - 2024-10-11T02:41:26.589Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
 [NX Daemon Server] - 2024-10-11T02:41:26.589Z - Time taken for 'total execution time for createProjectGraph()' 28.988708019256592ms
+[NX Daemon Server] - 2024-10-11T02:42:21.483Z - [WATCHER]: package.json was modified
+[NX Daemon Server] - 2024-10-11T02:42:21.484Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-10-11T02:42:21.692Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-10-11T02:42:21.692Z - [REQUEST]: package.json
+[NX Daemon Server] - 2024-10-11T02:42:21.692Z - [REQUEST]: 
+[NX Daemon Server] - 2024-10-11T02:42:21.704Z - Time taken for 'hash changed files from watcher' 3.9074589610099792ms
+[NX Daemon Server] - 2024-10-11T02:42:21.708Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.708Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.708Z - Handled HASH_GLOB. Handling time: 2. Response time: 0.
+[NX Daemon Server] - 2024-10-11T02:42:21.710Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.711Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.711Z - Handled GLOB. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-10-11T02:42:21.713Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.713Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.713Z - Handled HASH_GLOB. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-10-11T02:42:21.714Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.714Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.714Z - Handled HASH_GLOB. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-10-11T02:42:21.716Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.716Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-10-11T02:42:21.716Z - Handled HASH_GLOB. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-10-11T02:42:21.752Z - Time taken for 'build-project-configs' 50.94999998807907ms
+[NX Daemon Server] - 2024-10-11T02:42:21.756Z - Time taken for '@nx/vite/plugin:createDependencies' 8.87233304977417ms
+[NX Daemon Server] - 2024-10-11T02:42:21.781Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2024-10-11T02:42:21.781Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2024-10-11T02:42:21.781Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2024-10-11T02:42:21.781Z - Time taken for 'total execution time for createProjectGraph()' 26.229707956314087ms
