@@ -1,0 +1,98 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.0.0",
+  "pathMappings": {},
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "typecheck"
+      }
+    }
+  ],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".gitignore",
+        "hash": "11800182056579323253"
+      },
+      {
+        "file": "nx.json",
+        "hash": "8351323570310420235"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "5440216088929003092"
+      },
+      {
+        "file": "package.json",
+        "hash": "11429128718824555745"
+      }
+    ],
+    "projectFileMap": {
+      "@dch/boolean-algebra": [
+        {
+          "file": "packages/boolean-algebra/.gitignore",
+          "hash": "16986912420029859482"
+        },
+        {
+          "file": "packages/boolean-algebra/README.md",
+          "hash": "17657159203000101945"
+        },
+        {
+          "file": "packages/boolean-algebra/compiler.ts",
+          "hash": "10702335628265273220"
+        },
+        {
+          "file": "packages/boolean-algebra/core/operators.ts",
+          "hash": "13060307509311306015"
+        },
+        {
+          "file": "packages/boolean-algebra/core/token.ts",
+          "hash": "372564089298198767"
+        },
+        {
+          "file": "packages/boolean-algebra/errors/compile-error.ts",
+          "hash": "8964999607422769131"
+        },
+        {
+          "file": "packages/boolean-algebra/helpers/stack.ts",
+          "hash": "18374596380842499599"
+        },
+        {
+          "file": "packages/boolean-algebra/lib.ts",
+          "hash": "17303446126220308784"
+        },
+        {
+          "file": "packages/boolean-algebra/main.ts",
+          "hash": "15699031899371077693"
+        },
+        {
+          "file": "packages/boolean-algebra/package.json",
+          "hash": "15805132053219291332",
+          "deps": [
+            "npm:vite",
+            "npm:typescript"
+          ]
+        },
+        {
+          "file": "packages/boolean-algebra/solver.ts",
+          "hash": "9788040429546845139"
+        },
+        {
+          "file": "packages/boolean-algebra/tokenizer.ts",
+          "hash": "9693307164842249067"
+        },
+        {
+          "file": "packages/boolean-algebra/tsconfig.json",
+          "hash": "396229256056681953"
+        }
+      ]
+    }
+  }
+}
