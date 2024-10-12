@@ -6,8 +6,8 @@
       "outputs": ["{projectRoot}/out"],
       "cache": true
     },
-    "exec": {
-      "dependsOn": ["^exec"]
+    "test": {
+      "dependsOn": ["^test"]
     },
     "watch": {
       "outputs": ["{projectRoot}/out"],
