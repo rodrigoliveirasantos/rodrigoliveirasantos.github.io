@@ -1,0 +1,15 @@
+{
+  "name": "@dch/site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Aplicação web do DCH",
+  "scripts": {
+    "serve": "ng serve",
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dch/boolean-algebra": "*"
+  }
+}
