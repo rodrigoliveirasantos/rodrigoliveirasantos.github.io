@@ -2,9 +2,9 @@ import { Compiler } from "../core/compiler";
 import { AND, NOT, OR } from "../core/operators";
 import { Solver } from "../core/solver";
 
-type TruthTable = [string[], ...number[][]];
+export type TruthTable = [string[], ...number[][]];
 
-function validateTruthTable(table: TruthTable): {
+export function validateTruthTable(table: TruthTable): {
     isValid: boolean,
     reason: string
 } {
@@ -65,7 +65,7 @@ export function truthTable(expression: string) {
     return { table };
 }
 
-type SumOfProductsOptions = {
+export type SumOfProductsOptions = {
     includeOutput: boolean
 }
 
