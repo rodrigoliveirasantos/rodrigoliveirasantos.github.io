@@ -1,7 +1,10 @@
 <main class="py-9">
   <section>
     <div class="container mx-auto">
-      <form>
+      <form 
+        [formGroup]="expressionForm" 
+        (ngSubmit)="handleFormSubmit()"
+      >
         <label for="expression">
           <div class="mb-2 font-bold">
             Expressão booleana:
@@ -12,6 +15,7 @@
           <input 
             id="expression"
             name="expression"
+            formControlName="expression"
             class="block w-full p-3 border"
             placeholder="Ex: A + B . ~C ^ (D == E)" 
             type="text"
@@ -24,10 +28,38 @@
             <lucide-icon [img]="submitBtnIcon" />
           </button>
         </div>
+
+        @if (truthTableError(); as error) {
+          <small>{{ error }}</small>
+        }
       </form>
     </div>
   </section>
-  <section>
-    
-  </section>
+
+  @if (!(truthTableIsEmpty() || truthTableError())) {
+    <section class="container mt-8 mx-auto">
+      <table class="w-full">
+        <thead>
+          <tr>
+            @for (head of truthTableHead(); track head) {
+              <th 
+                class="border font-bold"
+                [class.bg-neutral-300]="!$last"
+                [class.bg-orange-400]="$last"
+              >{{ head }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of truthTableBody(); track $index) {
+            <tr>
+              @for (bit of row; track $index) {
+                <td class="border text-center">{{ bit }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  }
 </main>

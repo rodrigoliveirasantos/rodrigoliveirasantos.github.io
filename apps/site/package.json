@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dch/boolean-algebra": "*"
+    "@dch/boolean-algebra": "*",
+    "lucide-angular": "^0.452.0"
   }
 }

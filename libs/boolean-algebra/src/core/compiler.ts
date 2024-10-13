@@ -93,10 +93,10 @@ export class Compiler {
             const token = tokens[i];
 
             /* Descomente abaixo para um log mais detalhado. */
-            /* console.debug(">> Token: ", token);
+            console.debug(">> Token: ", token);
             console.debug(">> Stack: ", operatorsStack);
             console.debug(">> Out: ", output);
-            console.debug(); */
+            console.debug();
 
             if (token.type === 'bit' || token.type === 'var') {
                 if (token.type === 'var') {
@@ -114,12 +114,13 @@ export class Compiler {
             * resolver a expressão.
             */
             if (token.type === 'parentesisClose') {
-                const operator = operatorsStack.pop();
+                
                 while (
-                    operator &&
-                    operator.type !== 'parentesisOpen'
+                    !operatorsStack.empty() &&
+                    operatorsStack.top().type !== 'parentesisOpen'
                 ) {
-                    output.push();
+                    /* @ts-expect-error Nunca será undefined porque operatorsStack.empty() == false */
+                    output.push(operatorsStack.pop());
                 }   
 
                 /* Descarta o abre-parenteses. */
