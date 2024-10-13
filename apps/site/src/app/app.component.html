@@ -13,19 +13,20 @@
 
         <div class="flex items-center space-x-2">
           <input 
+            app-input
             id="expression"
             name="expression"
             formControlName="expression"
-            class="block w-full p-3 border"
-            placeholder="Ex: A + B . ~C ^ (D == E)" 
             type="text"
+            class="block w-full"
+            placeholder="Ex: A + B . ~C ^ (D == E)" 
           />
 
           <button 
             app-button
             aria-label="Processar expressão" 
           >
-            <lucide-icon [img]="submitBtnIcon" />
+            <lucide-icon [img]="submitBtnIcon" class="size-5" />
           </button>
         </div>
 

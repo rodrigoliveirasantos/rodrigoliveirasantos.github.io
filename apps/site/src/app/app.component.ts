@@ -3,11 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CompileError, TruthTable, generateTruthTable } from '@dch/boolean-algebra';
 import { ArrowRight, LucideAngularModule } from 'lucide-angular';
-import { ButtonComponent } from './modules/ui/components/button.component';
+import { ButtonComponent } from './modules/ui/components/button/button.component';
+import { InputComponent } from './modules/ui/components/input/input.component';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, LucideAngularModule, ReactiveFormsModule, ButtonComponent],
+  imports: [RouterModule, LucideAngularModule, ReactiveFormsModule, ButtonComponent, InputComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
