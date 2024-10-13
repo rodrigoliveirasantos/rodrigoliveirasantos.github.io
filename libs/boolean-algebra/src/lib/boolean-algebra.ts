@@ -26,7 +26,7 @@ export function validateTruthTable(table: TruthTable): {
 }  
 
 
-export function truthTable(expression: string) {
+export function generateTruthTable(expression: string) {
     const compiler = new Compiler();
     const { tokens, inputs, outputs, error } = compiler.parse(expression);
     const solver = new Solver(tokens);
