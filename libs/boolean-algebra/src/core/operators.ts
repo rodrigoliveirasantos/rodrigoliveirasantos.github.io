@@ -1,3 +1,5 @@
+import { OperatorNotFoundError } from "../errors/operator-not-found-error";
+
 type OperatorsMap = Map<string, Operator>;
 
 export class Operator {
@@ -45,4 +47,20 @@ export const OPERATORS = [
     return b.token.length - a.token.length;
 });
 
-export const OPERATORS_MAP: OperatorsMap = makeOperatorsMap(OPERATORS);
+const OPERATORS_MAP: OperatorsMap = makeOperatorsMap(OPERATORS);
+
+export function getOperatorByToken(token: string) {
+    return OPERATORS_MAP.get(token)
+}
+
+export function getAssertedOperatorByToken(token: string) {
+    const operator = getOperatorByToken(token);
+    if (!operator) {
+        throw new OperatorNotFoundError(token);
+    }
+    return operator;
+}
+
+export function operatorExists(token: string) {
+    return OPERATORS_MAP.has(token);
+}

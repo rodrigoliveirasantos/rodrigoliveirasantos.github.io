@@ -21,10 +21,6 @@ export class Stack<T> {
     }
 
     top() {
-        if (!this.items.length) {
-            return undefined;
-        }
-
         return this.items[this.items.length - 1];
     }
 

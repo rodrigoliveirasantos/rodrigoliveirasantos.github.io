@@ -1,0 +1,19 @@
+{
+  "name": "boolean-algebra",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/boolean-algebra/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/boolean-algebra",
+        "main": "libs/boolean-algebra/src/index.ts",
+        "tsConfig": "libs/boolean-algebra/tsconfig.lib.json",
+        "assets": ["libs/boolean-algebra/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

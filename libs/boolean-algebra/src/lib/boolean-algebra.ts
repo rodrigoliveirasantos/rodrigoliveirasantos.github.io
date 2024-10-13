@@ -1,6 +1,6 @@
-import { Compiler } from "./compiler";
-import { AND, NOT, OR } from "./core/operators";
-import { Solver } from "./solver";
+import { Compiler } from "../core/compiler";
+import { AND, NOT, OR } from "../core/operators";
+import { Solver } from "../core/solver";
 
 type TruthTable = [string[], ...number[][]];
 

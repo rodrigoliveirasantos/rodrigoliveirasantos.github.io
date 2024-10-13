@@ -1,8 +1,0 @@
-# Node modules
-node_modules
-
-# Arquivos da IDE
-.vscode
-
-# Outputs
-out

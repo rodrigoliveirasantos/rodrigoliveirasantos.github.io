@@ -1,7 +1,7 @@
-import { OPERATORS_MAP } from "./core/operators";
-import { Token } from "./core/token";
-import { CompileError } from "./errors/compile-error";
-import { Stack } from "./helpers/stack";
+import { CompileError } from "../errors/compile-error";
+import { Stack } from "../helpers/stack";
+import { getAssertedOperatorByToken } from "./operators";
+import { Token } from "./token";
 import { Tokenizer } from "./tokenizer";
 
 
@@ -114,11 +114,12 @@ export class Compiler {
             * resolver a expressão.
             */
             if (token.type === 'parentesisClose') {
+                const operator = operatorsStack.pop();
                 while (
-                    !operatorsStack.empty() &&
-                    operatorsStack.top().type !== 'parentesisOpen'
+                    operator &&
+                    operator.type !== 'parentesisOpen'
                 ) {
-                    output.push(operatorsStack.pop());
+                    output.push();
                 }   
 
                 /* Descarta o abre-parenteses. */
@@ -130,8 +131,8 @@ export class Compiler {
             * Procura onde encaixar o novo operador.
             */
             while (!operatorsStack.empty()) {
-                const topOperator = OPERATORS_MAP.get(operatorsStack.top().value as string);
-                const newOperator = OPERATORS_MAP.get(token.value as string);
+                const topOperator = getAssertedOperatorByToken(operatorsStack.top().value as string);
+                const newOperator = getAssertedOperatorByToken(token.value as string);
 
                 /* 
                 * Os operadores na pilha com precedência maior do que o novo operador
@@ -162,7 +163,8 @@ export class Compiler {
         }
 
         while (!operatorsStack.empty()) {
-            output.push(operatorsStack.pop()!);
+            /* @ts-expect-error Nunca vai ser undefined */
+            output.push(operatorsStack.pop());
         }
 
         /*

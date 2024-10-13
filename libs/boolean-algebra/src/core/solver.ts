@@ -1,6 +1,6 @@
 import { CompilationResult } from "./compiler";
-import { Operator, OPERATORS_MAP } from "./core/operators";
-import { Stack } from "./helpers/stack";
+import { getAssertedOperatorByToken, Operator } from "./operators";
+import { Stack } from "../helpers/stack";
 
 /*
 * Representa o resultado do Solver.
@@ -112,7 +112,7 @@ export class Solver {
                     solutionStack.push(token.value as number);
                     break;
 
-                case 'var':
+                case 'var': {
                     const varName = token.value as string;
                     const value = this.getVarValue(varName);
 
@@ -122,24 +122,24 @@ export class Solver {
 
                     solutionStack.push(value);
                     break;
-                
-                case 'operator':
-                    /* Preparando argumentos para operação */
-                    const operationArgs: number[] = [];
-                    const operator = OPERATORS_MAP.get(token.value as string);
+                }
+                case 'operator': {
+                  /* Preparando argumentos para operação */
+                  const operationArgs: number[] = [];
+                  const operator =  getAssertedOperatorByToken(token.value as string);
+                  
+                  for (let j = 0; j < operator.args; j++) {
+                      if (solutionStack.empty()) {
+                          return SolverResult.error(`Operador ${operator.token} esperava receber ${operator.args} argumentos. Recebeu ${j}.`);
+                      }
+
+                      operationArgs.push(solutionStack.pop() as number);
+                  }
+
+                  solutionStack.push(operator.handle(...operationArgs));
+                  break;
+                }
                     
-                    for (let j = 0; j < operator.args; j++) {
-                        if (solutionStack.empty()) {
-                            return SolverResult.error(`Operador ${operator.token} esperava receber ${operator.args} argumentos. Recebeu ${j}.`);
-                        }
-
-                        operationArgs.push(solutionStack.pop() as number);
-                    }
-
-                    solutionStack.push(operator.handle(...operationArgs));
-                    break;
-
-
                 default:
                     return SolverResult.error(`Recebido token ${token.value} inesperado.`);
             }

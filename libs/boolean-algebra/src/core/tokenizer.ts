@@ -1,6 +1,7 @@
-import { OPERATORS, OPERATORS_MAP } from "./core/operators";
-import { Token } from "./core/token";
-import { CompileError } from "./errors/compile-error";
+import { CompileError } from "../errors/compile-error";
+import { operatorExists, OPERATORS } from "./operators";
+import { Token } from "./token";
+
 
 enum TokenizerState {
     NewToken,
@@ -62,6 +63,7 @@ export class Tokenizer {
      * ser usado para saber quando uma variável começa e 
      * termina. 
      */
+    // eslint-disable-next-line no-useless-escape 
     readonly varAllowedChars = /[a-zA-Z0-9_\[\]$]/;
 
     /*
@@ -75,10 +77,9 @@ export class Tokenizer {
 
     cursor = 0;
 
-    char: string = '';
-    nextChar: string = '';
-
-    tokenValue: string = '';
+    char = '';
+    nextChar = '';
+    tokenValue = '';
     currentToken = Token.unknown();
 
     parentesisBalance = 0;
@@ -180,11 +181,11 @@ export class Tokenizer {
                     pode ser que seja falso. */
                     if (this.operatorsChars.includes(this.char)) {
                         /* No caso de termos um operador maior, vamos acumulando. */
-                        if (this.nextChar && OPERATORS_MAP.has(this.tokenValue + this.char)) {
+                        if (this.nextChar && operatorExists(this.tokenValue + this.char)) {
                             this.tokenValue += this.char;
                             ++this.cursor;
                         } else {
-                            if (OPERATORS_MAP.has(this.tokenValue)) {
+                            if (operatorExists(this.tokenValue)) {
                                 this.currentToken = new Token('operator', this.tokenValue);
                                 this.setNextState(TokenizerState.TokenComplete);
                             } else {
@@ -198,7 +199,7 @@ export class Tokenizer {
                         * Se já temos algum valor, então ele será considerado o operador,
                         * se não, então temos um token inválido.
                         */
-                        if (!OPERATORS_MAP.has(this.tokenValue)) {
+                        if (!operatorExists(this.tokenValue)) {
                             throw new CompileError(`Operador ${this.tokenValue} não é valido.`);
                         }
 

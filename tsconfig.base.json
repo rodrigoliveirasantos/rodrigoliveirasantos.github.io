@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@dch/boolean-algebra": ["libs/boolean-algebra/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
