@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CompileError, TruthTable, generateTruthTable } from '@dch/boolean-algebra';
 import { ArrowRight, LucideAngularModule } from 'lucide-angular';
+import { ButtonComponent } from './modules/ui/components/button.component';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, LucideAngularModule, ReactiveFormsModule],
+  imports: [RouterModule, LucideAngularModule, ReactiveFormsModule, ButtonComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

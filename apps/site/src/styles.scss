@@ -2,4 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --clr-foreground: 0 0 13;
+
+    --clr-primary: 33 100 57;
+    --clr-primary-foreground: 0 0 13;
+
+    --clr-secondary: 0 0 8;
+    --clr-secondary-foreground: 0 0 100;
+}
+
+@layer base {
+    body {
+        color: hsl(var(--clr-foreground));
+    }
+
+    :disabled {
+        pointer-events: none;
+    }
+}
+
 /* You can add global styles to this file, and also import other style files */

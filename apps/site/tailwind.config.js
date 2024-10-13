@@ -8,7 +8,25 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        mono: ["Fragment Mono", "monospace"],
+        sans: ["Manrope", "sans-serif"]
+      },
+      colors: {
+        foreground: {
+          DEFAULT: "hsl(var(--clr-foreground))"
+        },
+        primary: {
+          DEFAULT: "hsl(var(--clr-primary))",
+          foreground: "hsl(var(--clr-primary-foreground))"
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--clr-secondary))",
+          foreground: "hsl(var(--clr-secondary-foreground))"
+        }
+      }
+    },
   },
   plugins: [],
 };
