@@ -13,6 +13,17 @@ enum TokenizerState {
     TokenComplete
 }
 
+export class TokenizerResult {
+    constructor(
+        public tokens: Token[] = [],
+        public error: CompileError|false = false
+    ) {}
+
+    static error(err: CompileError) {
+        return new TokenizerResult([], err);
+    }
+}
+
 /** 
  * Tokenizer para as expressões booleanas. É capaz de tokenizar
  * apenas uma expressão. Para processar mais de uma expressão,
@@ -114,12 +125,10 @@ export class Tokenizer {
 
     /**
      * Processa a expressão recebida em uma lista de tokens.
-     * 
-     * @throws {CompileError} Se a expressão for inválida.
      */
-    parse(): Token[] {
+    parse(): TokenizerResult {
         if (!this.input) {
-            throw new CompileError('Não é possível processar um input vazio.')
+            return this._error('Não é possível processar um input vazio.')
         }
 
         while (!this.isComplete()) {
@@ -200,7 +209,7 @@ export class Tokenizer {
                         * se não, então temos um token inválido.
                         */
                         if (!operatorExists(this.tokenValue)) {
-                            throw new CompileError(`Operador ${this.tokenValue} não é valido.`);
+                            this._error(`Operador ${this.tokenValue} não é valido.`);
                         }
 
                         this.currentToken = new Token('operator', this.tokenValue);
@@ -219,7 +228,7 @@ export class Tokenizer {
 
                 case TokenizerState.ParentesisClose:
                     if (this.parentesisBalance === 0) {
-                        throw new CompileError('Encontrado ) sem um ( correspondente.');
+                        this._error('Encontrado ) sem um ( correspondente.');
                     }
 
                     this.tokenValue += this.char;
@@ -248,7 +257,7 @@ export class Tokenizer {
                         this.currentToken = new Token('var', this.tokenValue);
                         this.setNextState(TokenizerState.TokenComplete);
                     } else {
-                        throw new CompileError(`Variável não pode conter o caratére ${this.char}.`);
+                        this._error(`Variável não pode conter o caratére ${this.char}.`);
                     }
 
                     break;
@@ -273,14 +282,18 @@ export class Tokenizer {
         }
 
         if (this.parentesisBalance > 0) {
-            throw new CompileError('Existem ( não fechados.');
+            return this._error('Existem ( não fechados.');
         }
 
         const output = this.output;
 
         console.debug(">> Tokenizer out: ", output, '\n');
 
-        return output;
+        return new TokenizerResult(output);
+    }
+
+    private _error(message: string) {
+        return TokenizerResult.error(new CompileError(message))
     }
 }
 

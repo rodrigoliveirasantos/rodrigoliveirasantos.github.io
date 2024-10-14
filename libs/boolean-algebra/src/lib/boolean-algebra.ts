@@ -28,7 +28,7 @@ export function validateTruthTable(table: TruthTable): {
 
 export function generateTruthTable(expression: string) {
     const compiler = new Compiler();
-    const { tokens, inputs, outputs, error } = compiler.parse(expression);
+    const { tokens, inputs, outputs, error } = compiler.compile(expression);
     const solver = new Solver(tokens);
     const inputColsCount = inputs.length;
     const rowsCount = Math.pow(2, inputs.length);
@@ -36,7 +36,7 @@ export function generateTruthTable(expression: string) {
 
     /* No momento vamos so jogar o erro. */
     if (error) {
-        return { error };
+        return { error: error.reason };
     }
 
     for (let i = 0; i < rowsCount; i++) {

@@ -79,14 +79,19 @@ export class Compiler {
      * 
      * @see {Solver}
      */
-    parse(input: string): CompilationResult {
+    compile(input: string): CompilationResult {
         const tokeziner = new Tokenizer(input);
         const output: Token[] = [];
         const operatorsStack = new Stack<Token>();
 
         console.debug(">> Compiler in: ", input, '\n');
 
-        const tokens = tokeziner.parse();
+        const { tokens, error } = tokeziner.parse();
+
+        if (error) {
+            return CompilationResult.error(error);
+        }
+        
         const variables = new Set<string>();
         
         for (let i = 0; i < tokens.length; i++) {
