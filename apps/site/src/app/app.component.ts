@@ -7,17 +7,19 @@ import { ButtonComponent } from './modules/ui/components/button/button.component
 import { InputComponent } from './modules/ui/components/input/input.component';
 import { AlertModule } from './modules/ui/components/alert/alert.component';
 import { SyntaxGuideComponent } from "./modules/help/components/syntax-guide/syntax-guide.component";
+import { ThuthTableComponent } from "./modules/dc/components/truth-table/truth-table.component";
 
 @Component({
   standalone: true,
   imports: [
-    RouterModule, 
-    LucideAngularModule, 
-    ReactiveFormsModule, 
-    ButtonComponent, 
-    InputComponent, 
-    AlertModule, 
-    SyntaxGuideComponent
+    RouterModule,
+    LucideAngularModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+    InputComponent,
+    AlertModule,
+    SyntaxGuideComponent,
+    ThuthTableComponent
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -35,14 +37,6 @@ export class AppComponent {
   truthTable = signal<TruthTable>([
     []
   ]);
-
-  truthTableHead = computed(() => {
-    return this.truthTable()[0];
-  })
-
-  truthTableBody = computed(() => {
-    return this.truthTable().slice(1);
-  })
 
   truthTableIsEmpty = computed(() => {
     return this.truthTable().length === 1;

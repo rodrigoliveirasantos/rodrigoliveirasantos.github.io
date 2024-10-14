@@ -1,0 +1,35 @@
+<div class="overflow-auto">
+  <table>
+    <thead>
+      <tr>
+        @for (cell of head(); track cell) {
+          <th
+            class="min-w-20 p-2 border font-bold"
+            [class.bg-neutral-300]="!$last"
+            [class.bg-primary]="$last"
+          >
+            {{ cell }}
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of body(); track $index) {
+        <tr>
+          @for (cell of row; track $index) {
+            <td 
+              class="min-w-20 p-2 border font-mono text-center"
+              [ngClass]="{
+                border: true,
+                'font-mono': true,
+                'text-center': true,
+                'bg-primary/10': $last
+              }"
+            >{{ cell }}</td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

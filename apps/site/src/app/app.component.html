@@ -36,30 +36,7 @@
 
   @if (!(truthTableIsEmpty() || truthTableError())) {
     <section class="mt-8">
-      <table class="w-full">
-        <thead>
-          <tr>
-            @for (head of truthTableHead(); track head) {
-            <th
-              class="border font-bold"
-              [class.bg-neutral-300]="!$last"
-              [class.bg-orange-400]="$last"
-            >
-              {{ head }}
-            </th>
-            }
-          </tr>
-        </thead>
-        <tbody>
-          @for (row of truthTableBody(); track $index) {
-          <tr>
-            @for (bit of row; track $index) {
-            <td class="border text-center">{{ bit }}</td>
-            }
-          </tr>
-          }
-        </tbody>
-      </table>
+      <app-thuth-table class="mx-auto" [table]="truthTable()" />
     </section>
   }
 </main>
