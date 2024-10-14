@@ -98,6 +98,7 @@
       "executor": "nx-github-pages:deploy",
       "options": {
         "remote": "https://github.com/rodrigoliveirasantos/rodrigoliveirasantos.github.io.git",
+        "directory": "dist/apps/site/browser"
       },
       "dependsOn": [
         "build"
