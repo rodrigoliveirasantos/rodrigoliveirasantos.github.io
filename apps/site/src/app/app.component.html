@@ -1,63 +1,62 @@
-<main class="py-9">
+<main class="py-9 container mx-auto">
   <section>
-    <div class="container mx-auto">
-      <form 
-        [formGroup]="expressionForm" 
-        (ngSubmit)="handleFormSubmit()"
-      >
-        <label for="expression">
-          <div class="mb-2 font-bold">
-            Expressão booleana:
-          </div>
-        </label>
+    <form [formGroup]="expressionForm" (ngSubmit)="handleFormSubmit()">
+      <label for="expression">
+        <div class="mb-2 font-bold">Expressão booleana:</div>
+      </label>
 
-        <div class="flex items-center space-x-2">
-          <input 
-            app-input
-            id="expression"
-            name="expression"
-            formControlName="expression"
-            type="text"
-            class="block w-full"
-            placeholder="Ex: A + B . ~C ^ (D == E)" 
-          />
+      <div class="flex items-center space-x-2">
+        <input
+          app-input
+          id="expression"
+          name="expression"
+          formControlName="expression"
+          type="text"
+          class="block w-full"
+          placeholder="Ex: A + B . ~C ^ (D == E)"
+        />
 
-          <button 
-            app-button
-            aria-label="Processar expressão" 
-          >
-            <lucide-icon [img]="submitBtnIcon" class="size-5" />
-          </button>
-        </div>
+        <button app-button aria-label="Processar expressão">
+          <lucide-icon [img]="submitBtnIcon" class="size-5" />
+        </button>
+      </div>
 
-        @if (truthTableError(); as error) {
-          <small>{{ error }}</small>
-        }
-      </form>
-    </div>
+      @if (truthTableError(); as error) {
+      <small>{{ error }}</small>
+      }
+    </form>
   </section>
 
+  @if (showSyntaxGuide()) {
+    <app-syntax-guide 
+      class="block mt-3"
+      (close)="showSyntaxGuide.set(false)" 
+    />
+  }
+
   @if (!(truthTableIsEmpty() || truthTableError())) {
-    <section class="container mt-8 mx-auto">
+    <section class="mt-8">
       <table class="w-full">
         <thead>
           <tr>
             @for (head of truthTableHead(); track head) {
-              <th 
-                class="border font-bold"
-                [class.bg-neutral-300]="!$last"
-                [class.bg-orange-400]="$last"
-              >{{ head }}</th>
+            <th
+              class="border font-bold"
+              [class.bg-neutral-300]="!$last"
+              [class.bg-orange-400]="$last"
+            >
+              {{ head }}
+            </th>
             }
           </tr>
         </thead>
         <tbody>
           @for (row of truthTableBody(); track $index) {
-            <tr>
-              @for (bit of row; track $index) {
-                <td class="border text-center">{{ bit }}</td>
-              }
-            </tr>
+          <tr>
+            @for (bit of row; track $index) {
+            <td class="border text-center">{{ bit }}</td>
+            }
+          </tr>
           }
         </tbody>
       </table>

@@ -1,0 +1,31 @@
+<article app-alert>
+  <header app-alert-header>
+    <h2 app-alert-title>Guia de sintaxe</h2>
+    @if (dismissable()) {
+      <button (click)="close.emit()">
+        <lucide-icon class="size-5" [img]="closeIcon" />
+      </button>
+    }
+  </header>
+
+  <p>A expressão pode ser composta por:</p>
+  <ul class="list-inside list-disc">
+    <li>
+      Valores fixos 0 e 1
+    </li>
+    <li>
+      Pelos sinais <code>.</code>, <code>+</code>, <code>~</code>, <code>^</code> e 
+      <code>==</code>, correspondentes às operações lógicas AND, OR, NOT, XOR e XNOR
+    </li>
+    <li>
+      Parêntesis devidamente fechados
+    </li>
+    <li>
+      Espaços em branco
+    </li>
+    <li>
+      Sequência de letras e números, correspondendo às entradas das expressões, 
+      ex: <code>A</code>, <code>B</code>, <code>CLK</code>, <code>X1</code>
+    </li>
+  </ul>
+</article>

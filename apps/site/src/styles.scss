@@ -17,6 +17,10 @@
         color: hsl(var(--clr-foreground));
     }
 
+    code {
+        @apply font-mono;
+    }
+
     :disabled {
         pointer-events: none;
     }

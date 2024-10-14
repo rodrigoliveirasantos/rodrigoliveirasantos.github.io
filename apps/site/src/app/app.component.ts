@@ -5,10 +5,20 @@ import { CompileError, TruthTable, generateTruthTable } from '@dch/boolean-algeb
 import { ArrowRight, LucideAngularModule } from 'lucide-angular';
 import { ButtonComponent } from './modules/ui/components/button/button.component';
 import { InputComponent } from './modules/ui/components/input/input.component';
+import { AlertModule } from './modules/ui/components/alert/alert.component';
+import { SyntaxGuideComponent } from "./modules/help/components/syntax-guide/syntax-guide.component";
 
 @Component({
   standalone: true,
-  imports: [RouterModule, LucideAngularModule, ReactiveFormsModule, ButtonComponent, InputComponent],
+  imports: [
+    RouterModule, 
+    LucideAngularModule, 
+    ReactiveFormsModule, 
+    ButtonComponent, 
+    InputComponent, 
+    AlertModule, 
+    SyntaxGuideComponent
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -39,6 +49,8 @@ export class AppComponent {
   });
   
   truthTableError = signal<string|false>(false);
+
+  showSyntaxGuide = signal(true);
 
   handleFormSubmit() {
     const { expression } = this.expressionForm.value;
