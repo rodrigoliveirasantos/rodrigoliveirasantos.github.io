@@ -28,9 +28,15 @@ module.exports = {
         secondary: {
           DEFAULT: "hsl(var(--clr-secondary))",
           foreground: "hsl(var(--clr-secondary-foreground))"
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--clr-destructive))",
+          foreground: "hsl(var(--clr-destructive-foreground))"
         }
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 };

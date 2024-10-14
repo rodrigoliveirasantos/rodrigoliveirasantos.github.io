@@ -22,14 +22,16 @@
       </div>
 
       @if (truthTableError(); as error) {
-      <small>{{ error }}</small>
+        <small app-alert variant="destructive" class="block mt-2 text-base">
+          <b class="font-bold">Erro de sintaxe:</b> {{ error }}
+        </small>
       }
     </form>
   </section>
 
   @if (showSyntaxGuide()) {
     <app-syntax-guide 
-      class="block mt-3"
+      class="block mt-2"
       (close)="showSyntaxGuide.set(false)" 
     />
   }
