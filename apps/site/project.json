@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/site",
         "index": "apps/site/src/index.html",
         "browser": "apps/site/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/site/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +26,9 @@
             "input": "apps/site/public"
           }
         ],
-        "styles": ["apps/site/src/styles.scss"],
+        "styles": [
+          "apps/site/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -72,7 +78,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/site/jest.config.ts"
       }
@@ -85,6 +93,16 @@
         "staticFilePath": "dist/apps/site/browser",
         "spa": true
       }
+    },
+    "deploy": {
+      "executor": "nx-github-pages:deploy",
+      "options": {
+        "remote": "https://github.com/rodrigoliveirasantos/rodrigoliveirasantos.github.io.git",
+        "directory": "/"
+      },
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }
