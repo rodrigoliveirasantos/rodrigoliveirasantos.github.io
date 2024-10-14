@@ -209,7 +209,7 @@ export class Tokenizer {
                         * se não, então temos um token inválido.
                         */
                         if (!operatorExists(this.tokenValue)) {
-                            this._error(`Operador ${this.tokenValue} não é valido.`);
+                            return this._error(`Operador ${this.tokenValue} não é valido.`);
                         }
 
                         this.currentToken = new Token('operator', this.tokenValue);
@@ -228,7 +228,7 @@ export class Tokenizer {
 
                 case TokenizerState.ParentesisClose:
                     if (this.parentesisBalance === 0) {
-                        this._error('Encontrado ) sem um ( correspondente.');
+                        return this._error('Encontrado ) sem um ( correspondente.');
                     }
 
                     this.tokenValue += this.char;
@@ -257,7 +257,7 @@ export class Tokenizer {
                         this.currentToken = new Token('var', this.tokenValue);
                         this.setNextState(TokenizerState.TokenComplete);
                     } else {
-                        this._error(`Variável não pode conter o caratére ${this.char}.`);
+                        return this._error(`Variável não pode conter o caratére ${this.char}.`);
                     }
 
                     break;
