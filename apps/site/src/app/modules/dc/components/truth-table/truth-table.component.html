@@ -1,3 +1,24 @@
+<form [formGroup]="filterForm">
+  <ng-container formArrayName="filters">
+    @for (control of filterForm.controls.filters.controls; track control) {
+      <label [for]="'truth-table-filter-' + $index">
+        {{ head()[$index] }}
+      </label> 
+      
+      = 
+      
+      <select 
+        [id]="'truth-table-filter-' + $index" 
+        [formControlName]="$index
+      ">
+        @for (option of filterOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    }
+  </ng-container>
+</form>
+
 <div class="overflow-auto">
   <table>
     <thead>
