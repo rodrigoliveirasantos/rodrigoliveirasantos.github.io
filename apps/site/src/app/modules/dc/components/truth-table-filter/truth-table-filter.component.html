@@ -1,5 +1,5 @@
 <form [formGroup]="filterForm">
-    <fieldset>
+    <fieldset class="min-w-0">
       <legend class="font-bold mb-2">Filtrar:</legend>
       <div class="flex gap-2 overflow-auto" formArrayName="filters">
         @for (control of filterForm.controls.filters.controls; track control) {
