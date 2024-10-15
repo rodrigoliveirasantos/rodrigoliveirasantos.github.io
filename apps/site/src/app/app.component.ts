@@ -8,6 +8,7 @@ import { InputComponent } from './modules/ui/components/input/input.component';
 import { AlertModule } from './modules/ui/components/alert/alert.component';
 import { SyntaxGuideComponent } from "./modules/help/components/syntax-guide/syntax-guide.component";
 import { ThuthTableComponent } from "./modules/dc/components/truth-table/truth-table.component";
+import storedSignal from '../helpers/state/state';
 
 @Component({
   standalone: true,
@@ -44,7 +45,7 @@ export class AppComponent {
   
   truthTableError = signal<string|false>(false);
 
-  showSyntaxGuide = signal(true);
+  showSyntaxGuide = storedSignal('showSyntaxGuide', true);
 
   handleFormSubmit() {
     const { expression } = this.expressionForm.value;

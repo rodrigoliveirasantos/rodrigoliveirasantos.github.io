@@ -29,13 +29,19 @@
     </form>
   </section>
 
-  @if (showSyntaxGuide()) {
-    <app-syntax-guide 
-      class="block mt-2"
-      (close)="showSyntaxGuide.set(false)" 
-    />
-  }
-
+  <div class="mt-2">
+    @if (showSyntaxGuide()) {
+      <app-syntax-guide 
+        class="block"
+        (close)="showSyntaxGuide.set(false)" 
+      />
+    } @else {
+      <button app-button variant="inline" (click)="showSyntaxGuide.set(true)">
+        Exibir guia de sintaxe
+      </button>
+    }
+  </div>
+  
   @if (!(truthTableIsEmpty() || truthTableError())) {
     <section class="mt-8">
       <app-thuth-table class="mx-auto" [table]="truthTable()" />
