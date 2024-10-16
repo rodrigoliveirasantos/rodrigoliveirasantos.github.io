@@ -98,5 +98,9 @@
     "@nx/angular:component": {
       "style": "scss"
     }
+  },
+  "namedInputs": {
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
+    "default": ["sharedGlobals"]
   }
 }
