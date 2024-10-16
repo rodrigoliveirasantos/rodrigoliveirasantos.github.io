@@ -10,6 +10,7 @@ import { SyntaxGuideComponent } from "./modules/help/components/syntax-guide/syn
 import { ThuthTableComponent } from "./modules/dc/components/truth-table/truth-table.component";
 import storedSignal from '../helpers/state/state';
 
+
 @Component({
   standalone: true,
   imports: [
